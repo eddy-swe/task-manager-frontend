@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
+  const [title, setTitle] = useState('');
 
   // Fetch tasks
   const fetchTasks = async () => {
@@ -21,12 +22,50 @@ export default function Home() {
     fetchTasks();
   }, []);
 
+  // Create task
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!title.trim()) return;
+
+    try {
+      await fetch('http://localhost:5000/api/tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title }),
+      });
+
+      setTitle('');
+      fetchTasks(); // refresh list
+    } catch (error) {
+      console.error('Error creating task:', error);
+    }
+  };
+
   return (
-    <main className="p-6 min-h-screen bg-gray-100">
+    <main className="p-6 min-h-screen ">
       <h1 className="text-3xl font-bold text-blue-600 mb-4">
         Task Manager 🚀
       </h1>
 
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="mb-6 flex gap-2">
+        <input
+          type="text"
+          placeholder="Enter a task..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="flex-1 p-2 border rounded"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 rounded"
+        >
+          Add
+        </button>
+      </form>
+
+      {/* Task List */}
       <div className="space-y-3">
         {tasks.length === 0 ? (
           <p>No tasks yet...</p>
