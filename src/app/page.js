@@ -42,6 +42,32 @@ export default function Home() {
     }
   };
 
+  const toggleTask = async(id) => {
+    try{
+      await fetch(`http://localhost:5000/api/tasks/${id}/toggle`, {
+        method: 'PATCH',
+      });
+
+      fetchTasks(); //refresh
+    } catch(error){
+      console.error('Error toggling task:', error);
+    }
+  };
+
+  const deleteTask = async(id) => {
+    try{
+      if(!confirm('Are you sure?')) return;
+      
+      await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        method: 'DELETE',
+      });
+
+      fetchTasks(); //refresh
+    } catch(error){
+      console.error('Error deleting task:', error);
+    }
+  };
+
   return (
     <main className="p-6 min-h-screen ">
       <h1 className="text-3xl font-bold text-blue-600 mb-4">
@@ -73,16 +99,28 @@ export default function Home() {
           tasks.map((task) => (
             <div
               key={task._id}
-              className="p-4 bg-white rounded shadow"
+              className="p-4 bg-white rounded shadow flex justify-between items-center"
             >
-              <h2 className="font-semibold text-lg">
+              <h2
+                onClick={() => toggleTask(task._id)}
+                className={`font-semibold text-lg cursor-pointer ${
+                  task.completed ? 'line-through text-gray-400' : ''
+                }`}
+              >
                 {task.title}
               </h2>
 
               <p className="text-sm text-gray-500">
                 {task.completed ? '✅ Completed' : '⏳ Pending'}
               </p>
-            </div>
+            
+              <button
+                onClick={() => deleteTask(task._id)}
+                className="bg-red-500 text-white px-3 py-1 rounded"
+              >
+                Delete
+              </button>
+            </div>     
           ))
         )}
       </div>
