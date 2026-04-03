@@ -57,7 +57,7 @@ export default function Home() {
   const deleteTask = async(id) => {
     try{
       if(!confirm('Are you sure?')) return;
-      
+
       await fetch(`http://localhost:5000/api/tasks/${id}`, {
         method: 'DELETE',
       });
@@ -69,60 +69,70 @@ export default function Home() {
   };
 
   return (
-    <main className="p-6 min-h-screen ">
-      <h1 className="text-3xl font-bold text-blue-600 mb-4">
-        Task Manager 🚀
-      </h1>
-
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="mb-6 flex gap-2">
-        <input
-          type="text"
-          placeholder="Enter a task..."
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="flex-1 p-2 border rounded"
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 rounded"
-        >
-          Add
-        </button>
-      </form>
-
-      {/* Task List */}
-      <div className="space-y-3">
-        {tasks.length === 0 ? (
-          <p>No tasks yet...</p>
-        ) : (
-          tasks.map((task) => (
-            <div
-              key={task._id}
-              className="p-4 bg-white rounded shadow flex justify-between items-center"
-            >
-              <h2
-                onClick={() => toggleTask(task._id)}
-                className={`font-semibold text-lg cursor-pointer ${
-                  task.completed ? 'line-through text-gray-400' : ''
-                }`}
+    <main className="min-h-screen bg-gray-100 flex justify-center">
+      <div className="w-full max-w-xl p-6">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Task Manager 🚀
+        </h1>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="mb-6 flex gap-2">
+          <input
+            type="text"
+            placeholder="Enter a task..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 rounded-lg transition"
+          >
+            Add
+          </button>
+        </form>
+        {/* Task List */}
+        <div className="space-y-3">
+          {tasks.length === 0 ? (
+            <p className="text-center text-gray-500 mt-10">
+              No tasks yet. Add one above 👆
+            </p>
+          ) : (
+            tasks.map((task) => (
+              <div
+                key={task._id}
+                className="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition flex justify-between items-center"
               >
-                {task.title}
-              </h2>
+                <div>
+                  <h2
+                    onClick={() => toggleTask(task._id)}
+                    className={`font-semibold text-lg cursor-pointer ${
+                      task.completed
+                        ? "line-through text-gray-400"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    {task.title}
+                  </h2>
 
-              <p className="text-sm text-gray-500">
-                {task.completed ? '✅ Completed' : '⏳ Pending'}
-              </p>
-            
-              <button
-                onClick={() => deleteTask(task._id)}
-                className="bg-red-500 text-white px-3 py-1 rounded"
-              >
-                Delete
-              </button>
-            </div>     
-          ))
-        )}
+                  <p className="text-sm mt-1">
+                    {task.completed ? (
+                      <span className="text-green-600">Completed</span>
+                    ) : (
+                      <span className="text-yellow-600">Pending</span>
+                    )}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => deleteTask(task._id)}
+                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm transition"
+                >
+                  Delete
+                </button>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </main>
   );
