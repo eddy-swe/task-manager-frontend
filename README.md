@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#  Task Manager App (Full-Stack)
 
-## Getting Started
+A clean and modern full-stack task management application built using **Next.js, Node.js, Express, and MongoDB**.
 
-First, run the development server:
+This project demonstrates real-world full-stack development skills including REST API design, database integration, and responsive UI design.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##  Live Demo
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* Frontend (Vercel): [Live Demo](https://task-manager-frontend-app-one.vercel.app/)
+* Backend API (Render): [Backend](https://task-manager-backend-zime.onrender.com)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+##  Features
 
-To learn more about Next.js, take a look at the following resources:
+- ✅ Create tasks
+- ✅ View all tasks
+- ✅ Mark tasks as complete
+- ✅ Delete tasks
+- ✅ Filter tasks (completed / pending)
+- ✅ Responsive and clean UI
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+##  Tech Stack
 
-## Deploy on Vercel
+### Frontend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Next.js (App Router)
+* React
+* Tailwind CSS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB (Mongoose)
+
+---
+
+##  Project Structure
+
+### Frontend
+
+src/
+
+* app/
+* components/
+
+### Backend
+
+src/
+
+* controllers/
+* models/
+* routes/
+
+---
+
+##  API Endpoints
+
+| Method | Endpoint              | Description       |
+| ------ | --------------------- | ----------------- |
+| GET    | /api/tasks            | Get all tasks     |
+| POST   | /api/tasks            | Create a task     |
+| PUT    | /api/tasks/:id        | Update task       |
+| DELETE | /api/tasks/:id        | Delete task       |
+| PATCH  | /api/tasks/:id/toggle | Toggle completion |
+
+---
+
+##  Installation & Setup
+
+### 1. Clone the repo
+
+`git clone https://github.com/eddy-swe/task-manager-frontend.git`
+
+---
+
+### 2. Backend setup
+
+- `git clone https://github.com/eddy-swe/task-manager-api.git`
+- `npm install`
+
+
+Create a `.env` file:
+MONGO_URI=your_mongodb_connection_string
+
+Run server:
+- `npm run dev`
+
+---
+
+### 3. Frontend setup
+
+- `cd task-manager-frontend`
+- `npm install`
+- `npm run dev`
+
+---
+
+##  What I Learned
+
+* Building RESTful APIs with Express
+* MongoDB schema design using Mongoose
+* Connecting frontend and backend systems
+* State management in React
+* Handling real-world issues like CORS and hydration errors
+
+---
+
+##  Future Improvements
+
+* User authentication (JWT)
+* Task categories/tags
+* Drag-and-drop UI
+* Due date reminders
+* Dark mode
+
+---
+
+##  Author
+
+Built by Me
+
+---
+
+##  If you like this project
+
+Give it a star and feel free to fork it!
