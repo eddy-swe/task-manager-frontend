@@ -6,10 +6,12 @@ export default function Home() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
 
+  const API_URL = 'https://task-manager-backend-zime.onrender.com';
+
   // Fetch tasks
   const fetchTasks = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/tasks');
+      const res = await fetch(`${API_URL}/api/tasks`);
       const data = await res.json();
       setTasks(data);
     } catch (error) {
@@ -29,7 +31,7 @@ export default function Home() {
     if (!title.trim()) return;
 
     try {
-      await fetch('http://localhost:5000/api/tasks', {
+      await fetch(`${API_URL}/api/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title }),
@@ -44,7 +46,7 @@ export default function Home() {
 
   const toggleTask = async(id) => {
     try{
-      await fetch(`http://localhost:5000/api/tasks/${id}/toggle`, {
+      await fetch(`${API_URL}/api/tasks/${id}/toggle`, {
         method: 'PATCH',
       });
 
