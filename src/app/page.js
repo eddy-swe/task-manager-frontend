@@ -60,7 +60,7 @@ export default function Home() {
     try{
       if(!confirm('Are you sure?')) return;
 
-      await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      await fetch(`${API_URL}/api/tasks/${id}`, {
         method: 'DELETE',
       });
 
