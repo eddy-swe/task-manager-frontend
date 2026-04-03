@@ -13,7 +13,7 @@ This project demonstrates real-world full-stack development skills including RES
 
 ---
 
-## Backend Repository: [GitHub Repo]()
+## Backend Repository: [GitHub Repo](https://github.com/eddy-swe/task-manager-api)
 
 ##  Features
 
